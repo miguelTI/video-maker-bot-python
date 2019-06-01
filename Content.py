@@ -3,10 +3,10 @@ import json
 
 class Content:
     def __init__(self):
-        self.searchTerm = None
+        self.search_term = None
         self.prefix = None
-        self.sourceContent = None
-        self.sourceContentSanitized = None
+        self.source_content = None
+        self.source_content_sanitized = None
         self.sentences = []
 
     def to_json(self):

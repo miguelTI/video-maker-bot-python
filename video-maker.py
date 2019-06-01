@@ -6,7 +6,7 @@ print("Starting orchestrator")
 content = Content()
 
 # Read user input
-content = UserInput.read_input_and_update_content(content)
+content.search_term, content.prefix = UserInput.get_topic_and_prefix_from_input()
 print(content.to_json())
 # Fetch content from source
 
