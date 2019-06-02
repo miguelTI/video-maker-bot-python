@@ -1,0 +1,9 @@
+WATSON_CONFIG = {
+    'version': '2018-04-05',
+    'url': 'https://gateway.watsonplatform.net/natural-language-understanding/api',
+    'iam_apikey': 'YOUR_API_KEY'
+}
+
+ALGORITHMIA_CONFIG = {
+    'client': 'YOUR_API_KEY'
+}
