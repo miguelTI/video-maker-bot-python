@@ -1,9 +1,12 @@
 from Content import Content
 from services import UserInput, TextProcessing, ImageProcessing, VideoProcessing
 
+DEFAULT_AUDIO_PATH = "audio.mp3"
+
 print("Starting orchestrator")
 
 DEFAULT_CONTENT_PATH = "content.pickle"
+DEFAULT_VIDEO_PATH = "test.mp4"
 content = Content()
 content = content.load(DEFAULT_CONTENT_PATH)
 
@@ -24,4 +27,6 @@ content = content.load(DEFAULT_CONTENT_PATH)
 
 # Render video
 VideoProcessing.generate_slide_images_for_all_sentences(content.sentences)
-print(content.to_json())
+# VideoProcessing.render_video(content.sentences, DEFAULT_VIDEO_PATH, DEFAULT_AUDIO_PATH)
+print ("Generated video succesfully")
+# print(content.to_json())
