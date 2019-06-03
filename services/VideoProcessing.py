@@ -1,6 +1,6 @@
 from PIL import Image, ImageFilter, ImageFont, ImageDraw
 import textwrap
-from moviepy.editor import *
+from moviepy.editor import ImageClip, transfx, CompositeVideoClip, concatenate
 
 DEFAULT_FONT_TYPE = "Arial Bold.ttf"
 DEFAULT_FONT_SIZE = 48
@@ -45,18 +45,17 @@ def resize_image(image, sentence_key, output_path):
         print("Error resizing image {}".format(sentence_key))
 
 
-def merge_images(original_image, converted_image):
-    try:
-        image_width, image_height = original_image.size
-        background_image = Image.open(converted_image).convert(DEFAULT_IMAGE_MODE)
-        background_image_width, background_image_height = background_image.size
+def merge_images(original_image, output_path):
+    image_width, image_height = original_image.size
+    resize_width, resize_height = [int(image_width * (DEFAULT_IMAGE_HEIGHT / image_height)), DEFAULT_IMAGE_HEIGHT] if image_height > image_width else [DEFAULT_IMAGE_WIDTH, int(image_height * (DEFAULT_IMAGE_HEIGHT / image_width))]
+    original_image = original_image.resize((resize_width, resize_height))
+    background_image = Image.open(output_path).convert(DEFAULT_IMAGE_MODE)
+    background_image_width, background_image_height = background_image.size
 
-        offset = ((background_image_width - image_width) // 2, (background_image_height - image_height) // 2)
+    offset = ((background_image_width - resize_width) // 2, (background_image_height - resize_height) // 2)
 
-        background_image.paste(original_image, offset, original_image)
-        background_image.save(converted_image)
-    except:
-        print("Error merging image {}".format(converted_image))
+    background_image.paste(original_image, offset, original_image)
+    background_image.save(output_path)
 
 
 def get_text_position_by_sentence_key(sentence_key):
