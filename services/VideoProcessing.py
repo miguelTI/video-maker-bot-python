@@ -101,7 +101,7 @@ def get_slide_position_by_sentence_key(sentence_key):
     return SLIDE_POSITION[0] if sentence_key % 2 == 0 else SLIDE_POSITION[1]
 
 
-def render_video(sentences, output_path):
+def render_video(sentences, output_path, audio_path):
     image_slides = []
     for key, sentence in enumerate(sentences):
         image_slide = ImageClip("{}{}".format(key, CONVERTED_IMAGE_SUFFIX)).set_duration(10)
@@ -111,4 +111,4 @@ def render_video(sentences, output_path):
         image_slides.append(slides_video)
 
     final_video = concatenate(image_slides)
-    final_video.write_videofile(output_path, fps=DEFAULT_VIDEO_FPS)
+    final_video.write_videofile(output_path, audio=audio_path, fps=DEFAULT_VIDEO_FPS)
