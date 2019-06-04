@@ -24,6 +24,7 @@ DEFAULT_VIDEO_FPS = 24
 
 def generate_slide_images_for_all_sentences(sentences):
     for key, sentence in enumerate(sentences):
+        print("Generating slide {}...".format(key))
         generate_slide_images_for_sentence(key, sentence)
     create_youtube_thumbnail(0, YOUTUBE_THUMBNAIL_PATH)
 
@@ -101,6 +102,7 @@ def get_slide_position_by_sentence_key(sentence_key):
 
 
 def render_video(sentences, output_path, audio_path):
+    print("Rendering video...")
     image_slides = []
     for key, sentence in enumerate(sentences):
         image_slide = ImageClip("{}{}".format(key, CONVERTED_IMAGE_SUFFIX)).set_duration(10)

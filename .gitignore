@@ -6,6 +6,8 @@ content.json
 *.png
 *.mp4
 *.mp3
+client_secrets.json
+*oauth2.json
 
 .DS_Store
 
