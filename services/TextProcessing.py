@@ -13,7 +13,9 @@ ALGORITHMIA_ALGO_VERSION = "web/WikipediaParser/0.1.2"
 
 
 def fetch_content_and_sanitize(prefix, search_term):
+    print("Searching for content...")
     original_content = fetch_content_from_source("{} {}".format(prefix, search_term), DEFAULT_LANG)
+    print("Sanitizing content...")
     sanitized_content = clean_dates_in_parenthesis(clean_empty_and_markup_lines(original_content))
     return [original_content, sanitized_content]
 

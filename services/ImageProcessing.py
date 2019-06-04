@@ -19,8 +19,11 @@ def fetch_images_links(query):
 
 
 def fetch_images_and_download_for_sentences(sentences, search_term, downloaded_images):
+    print("Searching images...")
     for key, sentence in enumerate(sentences, start=0):
+        print("Searching images for \"{}\"...".format(generate_search_term(search_term, sentence, key)))
         sentence.images = fetch_images_links(generate_search_term(search_term, sentence, key))
+        print("Downloading images...")
         downloaded_images.append(download_single_image_for_sentence(sentence, key, downloaded_images))
     return sentences, downloaded_images
 
@@ -32,6 +35,7 @@ def generate_search_term(search_term, sentence, key):
 
 
 def download_image(image_url, destination):
+    print("Downlading image... {}".format(image_url))
     try:
         wget.download(image_url, destination)
         return True
@@ -41,5 +45,6 @@ def download_image(image_url, destination):
 
 def download_single_image_for_sentence(sentence, sentence_key, downloaded_images):
     for image_url in sentence.images:
+        print("Image to download... {}".format(image_url))
         if image_url not in downloaded_images and download_image(image_url, "{}-original.png".format(sentence_key)):
             return image_url
