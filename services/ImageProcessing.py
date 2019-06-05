@@ -10,7 +10,8 @@ def fetch_images_links(query):
         q=query,
         cx=config.GOOGLE_CLOUD_CONFIG["cse_id"],
         searchType="image",
-        num=2
+        num=3,
+        imgSize="medium"
         ).execute()
     links = []
     for item in response['items']:

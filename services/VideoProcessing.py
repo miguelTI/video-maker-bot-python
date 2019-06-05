@@ -48,7 +48,7 @@ def resize_image(image, sentence_key, output_path):
 
 def merge_images(original_image, output_path):
     image_width, image_height = original_image.size
-    resize_width, resize_height = [int(image_width * (DEFAULT_IMAGE_HEIGHT / image_height)), DEFAULT_IMAGE_HEIGHT] if image_height > image_width else [DEFAULT_IMAGE_WIDTH, int(image_height * (DEFAULT_IMAGE_HEIGHT / image_width))]
+    resize_width, resize_height = [int(image_width * (DEFAULT_IMAGE_HEIGHT / image_height)), DEFAULT_IMAGE_HEIGHT] if image_height > image_width else [DEFAULT_IMAGE_WIDTH, int(image_height * (DEFAULT_IMAGE_WIDTH / image_width))]
     original_image = original_image.resize((resize_width, resize_height))
     background_image = Image.open(output_path).convert(DEFAULT_IMAGE_MODE)
     background_image_width, background_image_height = background_image.size
